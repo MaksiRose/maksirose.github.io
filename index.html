@@ -2298,8 +2298,8 @@
 			const studiengang = document.getElementById("gblock-template-canvas-studiengang").value;
 
 			// Encrypt the form data using AES encryption
-			const encryptedVollerName = encrypt(vollerName);
-			const encryptedStudiengang = encrypt(studiengang);
+			const encryptedVollerName = encrypt.encrypt(vollerName);
+			const encryptedStudiengang = encrypt.encrypt(studiengang);
 
 			// Send the encrypted data to the server
 			fetch('38.242.143.118/submit', {
