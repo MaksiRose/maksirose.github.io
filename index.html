@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petition Site</title>
+</head>
+<body>
+    <form id="petitionForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <label for="course">Course of Study:</label>
+        <input type="text" id="course" required>
+        <button type="submit">Sign Petition</button>
+    </form>
+
+    <script>
+        document.getElementById('petitionForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const course = document.getElementById('course').value;
+            
+            const data = { name, course };
+            const encryptedData = await encryptData(JSON.stringify(data));
+
+            await fetch('https://your-server-endpoint', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ encryptedData })
+            });
+        });
+
+        async function encryptData(data) {
+            const encoder = new TextEncoder();
+            const encodedData = encoder.encode(data);
+            const key = await crypto.subtle.generateKey({ name: "AES-GCM", length: 256 }, true, ["encrypt"]);
+            const iv = crypto.getRandomValues(new Uint8Array(12)); // Random Initialization Vector
+            const encrypted = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, encodedData);
+
+            // Combine IV and encrypted data for transmission
+            return { iv: Array.from(iv), data: Array.from(new Uint8Array(encrypted)) };
+        }
+    </script>
+</body>
+</html>
