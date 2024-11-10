@@ -777,13 +777,6 @@
 
 
 
-
-
-
-
-
-
-
 	<style id="wp-block-library-inline-css">
 		:root {
 			--wp-admin-theme-color: #007cba;
@@ -2245,13 +2238,6 @@
 
 
 
-
-
-
-
-
-
-
 <body
 	class="home blog logged-in admin-bar no-customize-support wp-embed-responsive customizer-styles-applied jetpack-reblog-enabled has-launch-banner">
 	<div class="wp-site-blocks">
@@ -2274,20 +2260,20 @@
 						class="contact-form commentsblock wp-block-jetpack-contact-form" aria-label="Hello World!"
 						novalidate="">
 						<div class="wp-block-jetpack-contact-form">
-							<div style="" class="grunion-field-text-wrap grunion-field-wrap">
+							<div class="grunion-field-text-wrap grunion-field-wrap">
 								<label for="gblock-template-canvas-vollername" class="grunion-field-label text">Voller
 									Name</label>
 								<input type="text" name="gblock-template-canvas-vollername"
 									id="gblock-template-canvas-vollername" value="" class="text  grunion-field">
 							</div>
-							<div style="" class="grunion-field-text-wrap grunion-field-wrap">
+							<div class="grunion-field-text-wrap grunion-field-wrap">
 								<label for="gblock-template-canvas-studiengang"
 									class="grunion-field-label text">Studiengang</label>
 								<input type="text" name="gblock-template-canvas-studiengang"
 									id="gblock-template-canvas-studiengang" value="" class="text  grunion-field">
 							</div>
-							<div class="wp-block-jetpack-button wp-block-button" style=""><button
-									class="wp-block-button__link" style="" type="submit">Petition
+							<div class="wp-block-jetpack-button wp-block-button"><button class="wp-block-button__link"
+									type="submit">Petition
 									unterschreiben</button>
 							</div>
 						</div>
@@ -2298,40 +2284,37 @@
 	</div>
 
 	<script>
-		alert('Test 1!')
 
-		// var encrypt = new JSEncrypt();
+		var encrypt = new JSEncrypt();
 
-		// encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHxFkl6lohamWPDWKpVuRwRRQl\nCY3azuCSk4bw6bQ4WewDscWsLK3OVWmujW1B+nv5QcBFKvy68XTpM4FmNUuqJZJi\nrodI4vp7qMqI3Z/e3ad8JCeuPhsMik45Agd8tC0DbWA53CgujAeoiNxNTLF1SaQj\nysCN25nX3u5/fEBPbwIDAQAB\n-----END PUBLIC KEY-----');
+		encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHxFkl6lohamWPDWKpVuRwRRQl\nCY3azuCSk4bw6bQ4WewDscWsLK3OVWmujW1B+nv5QcBFKvy68XTpM4FmNUuqJZJi\nrodI4vp7qMqI3Z/e3ad8JCeuPhsMik45Agd8tC0DbWA53CgujAeoiNxNTLF1SaQj\nysCN25nX3u5/fEBPbwIDAQAB\n-----END PUBLIC KEY-----');
 
 
 		// Add form submission listener
 		document.getElementById("petition-form").addEventListener("submit", function(e) {
 			e.preventDefault(); // Prevent form submission
 
-			alert('alert 2!');
+			// Get the form data
+			const vollerName = document.getElementById("gblock-template-canvas-vollername").value;
+			const studiengang = document.getElementById("gblock-template-canvas-studiengang").value;
 
-			// // Get the form data
-			// const vollerName = document.getElementById("gblock-template-canvas-vollername").value;
-			// const studiengang = document.getElementById("gblock-template-canvas-studiengang").value;
+			// Encrypt the form data using AES encryption
+			const encryptedVollerName = encrypt(vollerName);
+			const encryptedStudiengang = encrypt(studiengang);
 
-			// // Encrypt the form data using AES encryption
-			// const encryptedVollerName = encrypt(vollerName);
-			// const encryptedStudiengang = encrypt(studiengang);
-
-			// // Send the encrypted data to the server
-			// fetch('38.242.143.118/submit', {
-			//     method: 'POST',
-			//     headers: {
-			//         'Content-Type': 'application/json'
-			//     },
-			//     body: JSON.stringify({
-			//         vollerName: encryptedVollerName,
-			//         studiengang: encryptedStudiengang
-			//     })
-			// }).then(response => response.json())
-			//   .then(data => alert('Petition submitted successfully!'))
-			//   .catch(error => console.error('Error:', error));
+			// Send the encrypted data to the server
+			fetch('38.242.143.118/submit', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					vollerName: encryptedVollerName,
+					studiengang: encryptedStudiengang
+				})
+			}).then(response => response.json())
+				.then(data => alert('Petition submitted successfully!'))
+				.catch(error => console.error('Error:', error));
 		});
 	</script>
 </body>
