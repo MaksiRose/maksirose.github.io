@@ -6,35 +6,40 @@
     <title>Petition Site</title>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 class="text-center">Petition</h1>
-        </header>
+    <div class="wp-block-group" style="padding: var(--wp--preset--spacing--50)">
+        <div class="wp-block-group">
+            <h1 class="wp-block-heading has-text-align-center has-x-large-font-size">Petition</h1>
+        </div>
 
-        <main>
-            <form action="/#contact-form" method="post" class="contact-form" aria-label="Hello World!" novalidate>
-                <div class="form-group">
-                    <label for="full-name">Voller Name</label>
-                    <input type="text" name="full-name" id="full-name" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="course">Studiengang</label>
-                    <input type="text" name="course" id="course" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Petition unterschreiben</button>
+        <div style="height: var(--wp--preset--spacing--30)" class="wp-block-spacer"></div>
 
-                <!-- Hidden inputs for form processing -->
+        <!-- Contact Form -->
+        <div id="contact-form-block-template-canvas" class="wp-block-jetpack-contact-form-container" 
+             style="--jetpack--contact-form--primary-color: #111; 
+                    --jetpack--contact-form--background-color: #f9f9f9; 
+                    --jetpack--contact-form--text-color: #000; 
+                    --jetpack--contact-form--border: 1px solid #8c8f94;">
+            <form action="/#contact-form-block-template-canvas" method="post" class="contact-form" aria-label="Petition Form" novalidate>
+                <div class="grunion-field-wrap">
+                    <label for="gblock-template-canvas-vollername" class="grunion-field-label">Voller Name</label>
+                    <input type="text" name="gblock-template-canvas-vollername" id="gblock-template-canvas-vollername" class="grunion-field">
+                </div>
+
+                <div class="grunion-field-wrap">
+                    <label for="gblock-template-canvas-studiengang" class="grunion-field-label">Studiengang</label>
+                    <input type="text" name="gblock-template-canvas-studiengang" id="gblock-template-canvas-studiengang" class="grunion-field">
+                </div>
+
+                <button type="submit" class="wp-block-button__link">Petition unterschreiben</button>
+
+                <!-- Hidden Fields -->
                 <input type="hidden" name="_wpnonce" value="5d01452a54">
                 <input type="hidden" name="_wp_http_referer" value="/">
                 <input type="hidden" name="contact-form-id" value="block-template-canvas">
                 <input type="hidden" name="action" value="grunion-contact-form">
                 <input type="hidden" name="contact-form-hash" value="a6fd4d98934df4e0b589f3326b15de0349c9ffff">
             </form>
-        </main>
-
-        <footer>
-            <p>&copy; 2024 Petition Site</p>
-        </footer>
+        </div>
     </div>
 </body>
 </html>
