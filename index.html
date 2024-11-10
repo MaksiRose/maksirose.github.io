@@ -3,7 +3,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Site Title</title>
+<title>Petition</title>
 
 <style crossorigin="anonymous" rel="stylesheet" id="all-css-18-1" type="text/css" media="all">
 @charset "UTF-8";
@@ -844,4 +844,48 @@ var actionbardata = {"siteID":"238873303","postID":"0","siteURL":"http:\/\/analy
 
 </div>
 
-</body></html>
+	<script>
+
+		let secretKey = null; // To hold the encryption key
+
+        // Fetch the encryption key from the server
+        fetch('https://your-server-url.com/get-encryption-key')
+            .then(response => response.json())
+            .then(data => {
+                secretKey = data.key;  // Store the key securely
+            })
+            .catch(error => {
+                console.error('Error fetching encryption key:', error);
+            });
+
+        // Add form submission listener
+        document.getElementById("petition-form").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent form submission
+
+            // Get the form data
+            const fullerName = document.getElementById("gblock-template-canvas-vollername").value;
+            const studiengang = document.getElementById("gblock-template-canvas-studiengang").value;
+
+            // Encrypt the form data using AES encryption
+            const encryptedFullerName = CryptoJS.AES.encrypt(fullerName, secretKey).toString();
+            const encryptedStudiengang = CryptoJS.AES.encrypt(studiengang, secretKey).toString();
+
+            // Send the encrypted data to the server
+            fetch('https://your-server-url.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    fullerName: encryptedFullerName,
+                    studiengang: encryptedStudiengang
+                })
+            }).then(response => response.json())
+              .then(data => alert('Petition submitted successfully!'))
+              .catch(error => console.error('Error:', error));
+        });
+    </script>
+
+</body>
+
+</html>
