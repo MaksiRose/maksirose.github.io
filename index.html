@@ -6,40 +6,35 @@
     <title>Petition Site</title>
 </head>
 <body>
-    <form id="petitionForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required>
-        <label for="course">Course of Study:</label>
-        <input type="text" id="course" required>
-        <button type="submit">Sign Petition</button>
-    </form>
+    <div class="container">
+        <header>
+            <h1 class="text-center">Petition</h1>
+        </header>
 
-    <script>
-        document.getElementById('petitionForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const course = document.getElementById('course').value;
-            
-            const data = { name, course };
-            const encryptedData = await encryptData(JSON.stringify(data));
+        <main>
+            <form action="/#contact-form" method="post" class="contact-form" aria-label="Hello World!" novalidate>
+                <div class="form-group">
+                    <label for="full-name">Voller Name</label>
+                    <input type="text" name="full-name" id="full-name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="course">Studiengang</label>
+                    <input type="text" name="course" id="course" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Petition unterschreiben</button>
 
-            await fetch('https://your-server-endpoint', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ encryptedData })
-            });
-        });
+                <!-- Hidden inputs for form processing -->
+                <input type="hidden" name="_wpnonce" value="5d01452a54">
+                <input type="hidden" name="_wp_http_referer" value="/">
+                <input type="hidden" name="contact-form-id" value="block-template-canvas">
+                <input type="hidden" name="action" value="grunion-contact-form">
+                <input type="hidden" name="contact-form-hash" value="a6fd4d98934df4e0b589f3326b15de0349c9ffff">
+            </form>
+        </main>
 
-        async function encryptData(data) {
-            const encoder = new TextEncoder();
-            const encodedData = encoder.encode(data);
-            const key = await crypto.subtle.generateKey({ name: "AES-GCM", length: 256 }, true, ["encrypt"]);
-            const iv = crypto.getRandomValues(new Uint8Array(12)); // Random Initialization Vector
-            const encrypted = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, encodedData);
-
-            // Combine IV and encrypted data for transmission
-            return { iv: Array.from(iv), data: Array.from(new Uint8Array(encrypted)) };
-        }
-    </script>
+        <footer>
+            <p>&copy; 2024 Petition Site</p>
+        </footer>
+    </div>
 </body>
 </html>
