@@ -848,36 +848,40 @@ var actionbardata = {"siteID":"238873303","postID":"0","siteURL":"http:\/\/analy
 
 	<script>
 
-	var encrypt = new JSEncrypt();
+		alert('Test 1!')
 
-		encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHxFkl6lohamWPDWKpVuRwRRQl\nCY3azuCSk4bw6bQ4WewDscWsLK3OVWmujW1B+nv5QcBFKvy68XTpM4FmNUuqJZJi\nrodI4vp7qMqI3Z/e3ad8JCeuPhsMik45Agd8tC0DbWA53CgujAeoiNxNTLF1SaQj\nysCN25nX3u5/fEBPbwIDAQAB\n-----END PUBLIC KEY-----');
+	// var encrypt = new JSEncrypt();
+
+		// encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHxFkl6lohamWPDWKpVuRwRRQl\nCY3azuCSk4bw6bQ4WewDscWsLK3OVWmujW1B+nv5QcBFKvy68XTpM4FmNUuqJZJi\nrodI4vp7qMqI3Z/e3ad8JCeuPhsMik45Agd8tC0DbWA53CgujAeoiNxNTLF1SaQj\nysCN25nX3u5/fEBPbwIDAQAB\n-----END PUBLIC KEY-----');
 
 
         // Add form submission listener
         document.getElementById("petition-form").addEventListener("submit", function (e) {
             e.preventDefault(); // Prevent form submission
 
-            // Get the form data
-            const vollerName = document.getElementById("gblock-template-canvas-vollername").value;
-            const studiengang = document.getElementById("gblock-template-canvas-studiengang").value;
+		alert('alert 2!');
 
-            // Encrypt the form data using AES encryption
-            const encryptedVollerName = encrypt(vollerName);
-            const encryptedStudiengang = encrypt(studiengang);
+            // // Get the form data
+            // const vollerName = document.getElementById("gblock-template-canvas-vollername").value;
+            // const studiengang = document.getElementById("gblock-template-canvas-studiengang").value;
 
-            // Send the encrypted data to the server
-            fetch('38.242.143.118/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    vollerName: encryptedVollerName,
-                    studiengang: encryptedStudiengang
-                })
-            }).then(response => response.json())
-              .then(data => alert('Petition submitted successfully!'))
-              .catch(error => console.error('Error:', error));
+            // // Encrypt the form data using AES encryption
+            // const encryptedVollerName = encrypt(vollerName);
+            // const encryptedStudiengang = encrypt(studiengang);
+
+            // // Send the encrypted data to the server
+            // fetch('38.242.143.118/submit', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //         vollerName: encryptedVollerName,
+            //         studiengang: encryptedStudiengang
+            //     })
+            // }).then(response => response.json())
+            //   .then(data => alert('Petition submitted successfully!'))
+            //   .catch(error => console.error('Error:', error));
         });
     </script>
 
