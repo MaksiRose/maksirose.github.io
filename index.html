@@ -5,8 +5,8 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Petition</title>
 
-	<script src="https://cdn.rawgit.com/travist/jsencrypt/master/bin/jsencrypt.min.js"></script>
-
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="bin/jsencrypt.min.js"></script>
 <style crossorigin="anonymous" rel="stylesheet" id="all-css-18-1" type="text/css" media="all">
 @charset "UTF-8";
 :root {
@@ -818,7 +818,7 @@ var actionbardata = {"siteID":"238873303","postID":"0","siteURL":"http:\/\/analy
 
 
 <div data-test="contact-form" id="contact-form-block-template-canvas" class="wp-block-jetpack-contact-form-container " style="--jetpack--contact-form--primary-color: rgb(17, 17, 17); --jetpack--contact-form--background-color: rgb(249, 249, 249); --jetpack--contact-form--text-color: rgb(0, 0, 0); --jetpack--contact-form--border: 1px solid rgb(140, 143, 148); --jetpack--contact-form--border-color: rgb(140, 143, 148); --jetpack--contact-form--border-size: 1px; --jetpack--contact-form--border-style: solid; --jetpack--contact-form--border-radius: 0px; --jetpack--contact-form--input-background: rgb(255, 255, 255); --jetpack--contact-form--input-background-fallback: rgb(255, 255, 255); --jetpack--contact-form--input-padding: 16px; --jetpack--contact-form--input-padding-top: 16px; --jetpack--contact-form--input-padding-left: 16px; --jetpack--contact-form--font-size: 16.8px; --jetpack--contact-form--font-family: &quot;Inter&quot;, sans-serif; --jetpack--contact-form--line-height: 26.0333px; --jetpack--contact-form--button-primary--color: rgb(249, 249, 249); --jetpack--contact-form--button-primary--background-color: rgb(17, 17, 17); --jetpack--contact-form--button-primary--border: 0px rgb(17, 17, 17); --jetpack--contact-form--button-primary--border-color: rgb(17, 17, 17); --jetpack--contact-form--button-outline--padding: 9.6px 16px; --jetpack--contact-form--button-outline--border: 0px solid rgb(17, 17, 17); --jetpack--contact-form--button-outline--background-color: rgb(17, 17, 17); --jetpack--contact-form--button-outline--background-color-fallback: rgb(17, 17, 17); --jetpack--contact-form--button-outline--border-size: 0px; --jetpack--contact-form--button-outline--border-radius: 5.28px; --jetpack--contact-form--button-outline--text-color: rgb(249, 249, 249); --jetpack--contact-form--button-outline--line-height: 22.3167px;">
-<form action="/#contact-form-block-template-canvas" method="post" class="contact-form commentsblock wp-block-jetpack-contact-form" aria-label="Hello World!" novalidate="">
+<form id="petition-form" action="/#contact-form-block-template-canvas" method="post" class="contact-form commentsblock wp-block-jetpack-contact-form" aria-label="Hello World!" novalidate="">
 
 <div class="wp-block-jetpack-contact-form">
 <div style="" class="grunion-field-text-wrap grunion-field-wrap">
@@ -846,11 +846,11 @@ var actionbardata = {"siteID":"238873303","postID":"0","siteURL":"http:\/\/analy
 
 </div>
 
-	
 	<script>
 
 	var encrypt = new JSEncrypt();
-encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHxFkl6lohamWPDWKpVuRwRRQl\nCY3azuCSk4bw6bQ4WewDscWsLK3OVWmujW1B+nv5QcBFKvy68XTpM4FmNUuqJZJi\nrodI4vp7qMqI3Z/e3ad8JCeuPhsMik45Agd8tC0DbWA53CgujAeoiNxNTLF1SaQj\nysCN25nX3u5/fEBPbwIDAQAB\n-----END PUBLIC KEY-----');
+
+		encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHxFkl6lohamWPDWKpVuRwRRQl\nCY3azuCSk4bw6bQ4WewDscWsLK3OVWmujW1B+nv5QcBFKvy68XTpM4FmNUuqJZJi\nrodI4vp7qMqI3Z/e3ad8JCeuPhsMik45Agd8tC0DbWA53CgujAeoiNxNTLF1SaQj\nysCN25nX3u5/fEBPbwIDAQAB\n-----END PUBLIC KEY-----');
 
 
         // Add form submission listener
@@ -862,11 +862,11 @@ encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNAD
             const studiengang = document.getElementById("gblock-template-canvas-studiengang").value;
 
             // Encrypt the form data using AES encryption
-            const encryptedVollerName = encrypt.encrypt(vollerName)
-            const encryptedStudiengang = encrypt.encrypt(studiengang);
+            const encryptedVollerName = encrypt(vollerName);
+            const encryptedStudiengang = encrypt(studiengang);
 
             // Send the encrypted data to the server
-            fetch('https:/38.242.143.118/submit', {
+            fetch('38.242.143.118/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
