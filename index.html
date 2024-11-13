@@ -2313,7 +2313,7 @@
 			const encryptedStudiengang = encrypt.encrypt(studiengang);
 
 			// Send the encrypted data to the server
-			fetch('https://38.242.143.118/submit', {
+			fetch('http://38.242.143.118/submit', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
