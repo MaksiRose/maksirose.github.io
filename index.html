@@ -2281,6 +2281,8 @@
 							<div class="wp-block-jetpack-button wp-block-button"><button class="wp-block-button__link"
 									type="submit">Petition unterschreiben</button>
 							</div>
+							<div id="form-message" style="display: none; color: green; font-weight: bold; margin-top: 10px;">Petition erfolgreich unterschrieben!
+							</div>
 							<p style="white-space: pre-wrap; min-width: 1px; font-size: 0.9rem;"><mark
 									style="background-color:rgba(0, 0, 0, 0)"
 									class="has-inline-color has-contrast-3-color">Deine Daten werden vor dem Absenden verschlüsselt, und auf einem privaten Server der Ersteller der Petition gespeichert. Sie sind also sicher.</mark></p>
@@ -2321,8 +2323,21 @@
 					studiengang: encryptedStudiengang
 				})
 			}).then(response => response.json())
-				.then(data => alert('Petition submitted successfully!'))
-				.catch(error => console.error('Error:', error));
+				.then(data => {
+					// Display success message
+					const messageDiv = document.getElementById("form-message");
+					messageDiv.textContent = "Petition erfolgreich unterschrieben!";
+					messageDiv.style.color = "green";
+					messageDiv.style.display = "block";
+				})
+				.catch(error => {
+					// Display error message
+					const messageDiv = document.getElementById("form-message");
+					messageDiv.textContent = "Es gab einen Fehler beim Unterzeichnen.";
+					messageDiv.style.color = "red";
+					messageDiv.style.display = "block";
+					console.error('Error:', error);
+				});
 		});
 	</script>
 </body>
