@@ -2333,10 +2333,10 @@
 				.catch(error => {
 					// Display error message
 					const messageDiv = document.getElementById("form-message");
-					messageDiv.textContent = "Es gab einen Fehler beim Unterzeichnen.";
+					messageDiv.textContent = `Es gab einen Fehler beim Unterzeichnen:\n${error}`;
 					messageDiv.style.color = "red";
 					messageDiv.style.display = "block";
-					console.error('Error:', error);
+					console.error(error);
 				});
 		});
 	</script>
